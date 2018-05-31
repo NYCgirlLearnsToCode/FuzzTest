@@ -145,8 +145,18 @@
                     </view>
                     <navigationItem key="navigationItem" id="DcH-Mn-OYf">
                         <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="zgE-zk-df7">
+                            <rect key="frame" x="8" y="7" width="359" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="All"/>
+                                <segment title="Text"/>
+                                <segment title=""/>
+                            </segments>
+                        </segmentedControl>
                     </navigationItem>
                     <connections>
+                        <outlet property="segmentedControl" destination="zgE-zk-df7" id="JOV-Ii-izC"/>
                         <outlet property="tableView" destination="Zjl-Qe-8Bg" id="s10-ui-mSv"/>
                     </connections>
                 </viewController>

@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
     
     var currentImage = UIImage()
@@ -84,6 +85,8 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let data = dataList[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "FuzzCell", for: indexPath) as! FuzzTableViewCell
+        switch segmentedControl.selectedSegmentIndex {
+        case 0:
         let imageUrl = data.data ?? "nil"
         cell.fuzzImageView.image = nil
         cell.activityIndicator.startAnimating()
@@ -98,7 +101,19 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         }
         ImageAPIClient.manager.getImage(from: imageUrl, completionHandler: completion, errorHandler: {(print($0))})
         return cell
+        case 1:
+            let data = dataList[indexPath.row]
+            let cell = tableView.dequeueReusableCell(withIdentifier: "FuzzCell", for: indexPath) as! FuzzTableViewCell
+            cell.fuzzImageView.image = nil
+            cell.activityIndicator.isHidden = true
+            cell.configureCell(fuzzData: data)
+            return cell
+        default:
+            print("none")
+        }
+    return cell
     }
+    
     
 }
 
